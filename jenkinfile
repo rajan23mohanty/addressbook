@@ -1,6 +1,7 @@
 pipeline {
     agent { 
-        node { label 'master' } 
+        node { label 'master' }
+        echo 'Build with maven' 
         }
     tools {
         maven 'MAVEN' 
