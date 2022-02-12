@@ -7,13 +7,13 @@ pipeline {
         jdk 'jdk'
     }
     stages {
-        stage{
+        stage ('Run in Parallel')
             parallel {
                 stage('Code Validate') {
                     steps {
                         sh """
                         mvn validate
-                        echo 'This is Test'
+                        echo 'This is Validate'
                         """
                     }
                 }
