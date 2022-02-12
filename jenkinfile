@@ -1,7 +1,6 @@
 pipeline {
     agent { 
-        node { label 'master' }
-        echo 'Build with maven' 
+        node { label 'master' } 
         }
     tools {
         maven 'MAVEN' 
@@ -10,7 +9,10 @@ pipeline {
     stages {
         stage('Code Validate') {
             steps {
-                sh 'mvn validate'
+                sh """
+                mvn validate
+                echo 'This is Test'
+                """
             }
         }
         stage('Compile') {
