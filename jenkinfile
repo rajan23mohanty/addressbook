@@ -7,17 +7,24 @@ pipeline {
         jdk 'jdk'
     }
     stages {
-        stage('Code Validate') {
-            steps {
-                sh """
-                mvn validate
-                echo 'This is Test'
-                """
-            }
-        }
-        stage('Compile') {
-            steps {
-                sh 'mvn compile'
+        stage{
+            parallel {
+                stage('Code Validate') {
+                    steps {
+                        sh """
+                        mvn validate
+                        echo 'This is Test'
+                        """
+                    }
+                }
+                stage('Compile') {
+                    steps {
+                        sh """
+                        echo 'This is parallel'
+                        mvn compile
+                        """
+                    }
+                }
             }
         }
         stage('Code Test') {
